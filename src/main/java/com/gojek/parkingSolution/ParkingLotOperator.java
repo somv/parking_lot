@@ -1,4 +1,4 @@
-package com.gojek.parkingSolution.models;
+package com.gojek.parkingSolution;
 
 import java.util.ArrayList;
 import java.util.Collections;

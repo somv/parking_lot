@@ -1,4 +1,4 @@
-package com.gojek.parkingSolution.models;
+package com.gojek.parkingSolution;
 
 public class Vehicle {
 
