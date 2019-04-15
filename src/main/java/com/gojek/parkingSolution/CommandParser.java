@@ -47,10 +47,10 @@ public class CommandParser {
 		// the first element of the split string will be the method, like 'park' or 'leave'
 		String lineMethod = lineArgs[0].trim().toLowerCase();
 		
-		// Some validations on the entered command
+		// Some validations on the entered command, if the command is wrong then it won't execute the further steps.
 		boolean isValidCommand = checkCommand(lineArgs);
-		
 		if(!isValidCommand) return;
+		
 		
 		switch(lineMethod) {
 		
@@ -63,7 +63,8 @@ public class CommandParser {
 					}
 					if(this.parkingLotOperator == null) {
 						this.parkingLotOperator = new ParkingLotOperator();
-						this.parkingLotOperator.createParkingLot(size);
+						String msg = this.parkingLotOperator.createParkingLot(size);
+						System.out.println(msg);
 					} else {
 						System.out.println("Parking lot has been already created");
 					}
@@ -75,35 +76,41 @@ public class CommandParser {
 			case "park":
 				String number = lineArgs[1].trim();
 				String color = lineArgs[2].trim();
-				this.parkingLotOperator.park(new Vehicle(number, color));
+				String parkMsg = this.parkingLotOperator.park(new Vehicle(number, color));
+				System.out.println(parkMsg);
 				break;
 				
 			case "leave":
 				try {
 					int slotNumber = Integer.parseInt(lineArgs[1].trim());
-					this.parkingLotOperator.leave(slotNumber);
+					String leaveMsg = this.parkingLotOperator.leave(slotNumber);
+					System.out.println(leaveMsg);
 				} catch(Exception ex) {
 					System.out.println("Invalid slot number.");
 				}
 				break;
 				
 			case "status":
-				this.parkingLotOperator.getStatus();
+				String statusMsg = this.parkingLotOperator.getStatus();
+				System.out.println(statusMsg);
 				break;
 			
 			case "registration_numbers_for_cars_with_colour":
 				String findColor = lineArgs[1].trim();
-				this.parkingLotOperator.getRegNosFromColor(findColor);
+				String regNos = this.parkingLotOperator.getRegNosFromColor(findColor);
+				System.out.println(regNos);
 				break;
 				
 			case "slot_numbers_for_cars_with_colour":
 				String slotColor = lineArgs[1].trim();
-				this.parkingLotOperator.getSlotNosFromColor(slotColor);
+				String slotsMsg = this.parkingLotOperator.getSlotNosFromColor(slotColor);
+				System.out.println(slotsMsg);
 				break;
 				
 			case "slot_number_for_registration_number":
 				String regNumber = lineArgs[1].trim();
-				this.parkingLotOperator.getSlotNoFromRegNo(regNumber);
+				String slots = this.parkingLotOperator.getSlotNoFromRegNo(regNumber);
+				System.out.println(slots);
 				break;
 				
 			case "exit":
