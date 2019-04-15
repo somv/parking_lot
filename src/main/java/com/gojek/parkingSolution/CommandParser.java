@@ -118,7 +118,7 @@ public class CommandParser {
 				break;
 				
 			default:
-				System.out.println("Unsupported command. Choose from [create, leave, park, status, registration_numbers_for_cars_with_colour, slot_numbers_for_cars_with_colour, slot_number_for_registration_number]");
+				System.out.println("Unsupported command. Choose from [create_parking_lot, leave, park, status, registration_numbers_for_cars_with_colour, slot_numbers_for_cars_with_colour, slot_number_for_registration_number, exit]");
 				break;
 				
 		}
