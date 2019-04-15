@@ -7,14 +7,17 @@ import java.io.IOException;
 import java.util.Scanner;
 
 /**
- * Hello world!
+ * 
+ * @author Somveer
  *
+ * Main entry point of the program.
  */
 public class App 
 {
 	public static void main(String[] args) {
 		CommandParser commandParser = new CommandParser();
 		
+		// if the user is going to use command line to pass arguments to the program.
 		if(args.length == 0) {
 			Scanner sc = new Scanner(System.in);
 			
@@ -26,6 +29,7 @@ public class App
 			
 			sc.close();
 			
+		// if the user is using file to pass the arguments to the program.
 		} else {
 			
 			try {

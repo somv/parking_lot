@@ -7,12 +7,20 @@ public class CommandParser {
 
 	private ParkingLotOperator parkingLotOperator;
 	
+	/*
+	 *  Map to contains all of the valid commands and their argument lengths after splitting the command string at space.
+	 */
 	private Map<String, Integer> commands;
+	
+	/*
+	 * Map to contain correct command. 
+	 * It will be used to give an example of its usage if the user enters wrong command.
+	 */
 	private Map<String, String> commandUsage;
 	
 	public CommandParser() {
 		commands = new HashMap<String, Integer>();
-		commands.put("create_parking_lot", 2);
+		commands.put("create_parking_lot", 2); // create_parking_lot command will have a length of 2 after splitting the string at space i.e. `create_parking_lot 4`
 		commands.put("park", 3);
 		commands.put("leave", 2);
 		commands.put("status", 1);
@@ -33,9 +41,13 @@ public class CommandParser {
 	
 	public void parseCommand(String line) {
 		
+		// split the input line on spaces
 		String[] lineArgs = line.split(" ");
+		
+		// the first element of the split string will be the method, like 'park' or 'leave'
 		String lineMethod = lineArgs[0].trim().toLowerCase();
 		
+		// Some validations on the entered command
 		boolean isValidCommand = checkCommand(lineArgs);
 		
 		if(!isValidCommand) return;
@@ -67,8 +79,12 @@ public class CommandParser {
 				break;
 				
 			case "leave":
-				int slotNumber = Integer.parseInt(lineArgs[1].trim());
-				this.parkingLotOperator.leave(slotNumber);
+				try {
+					int slotNumber = Integer.parseInt(lineArgs[1].trim());
+					this.parkingLotOperator.leave(slotNumber);
+				} catch(Exception ex) {
+					System.out.println("Invalid slot number.");
+				}
 				break;
 				
 			case "status":

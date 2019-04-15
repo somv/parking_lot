@@ -9,19 +9,40 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * 
+ * @author Somveer
+ * This class has all of the business logic that is required to run the parking lot.
+ * 
+ */
 public class ParkingLotOperator {
 
 	private ParkingLot parkingLot;
 	
-	// Registration number and slot mapping
+	/*
+	 *  Registration number and slot mapping
+	 *  This will be used to get the slot of vehicles from their registration number in O(1) time.
+	 */
 	Map<String, Integer> regNoSlotMap = new HashMap<String, Integer>();
 	
-	// Slot and registration number mapping
+	/*
+	 *  Slot and vehicle mapping
+	 *  This will be used to get the vehicle parked at a particular slot in O(1) time.
+	 */
 	Map<Integer, Vehicle> slotVehicleMap = new HashMap<Integer, Vehicle>();
 		
-	// Color and registration numbers mapping
+	/*
+	 *  Color and registration numbers mapping
+	 *  This will be used to get the information about all of the vehicles from their color.
+	 */
 	Map<String, Set<String>> colorRegNoMap = new HashMap<String, Set<String>>();
 	
+	/**
+	 * 
+	 * @param size: The size of the parking lot
+	 * It will create a priority queue with the given size
+	 * 
+	 */
 	public void createParkingLot(int size) {
 		if(size > 0) {
 			this.parkingLot = new ParkingLot(size);
@@ -31,6 +52,13 @@ public class ParkingLotOperator {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param vehicle: Vehicle object to be parked
+	 * 
+	 * This function will make entries into the three maps of this vehicle, if and
+	 * only if there is some space left in the parking lot.
+	 */
 	public void park(Vehicle vehicle) {
 		Integer slot = this.parkingLot.getSlot();
 		if(slot != null) {
@@ -51,6 +79,13 @@ public class ParkingLotOperator {
 		
 	}
 	
+	/**
+	 * 
+	 * @param slotNo: slot number to be freed
+	 * 
+	 * This function will check if the slot is valid, if the slot is valid then it will remove the entries of that
+	 * vehicle from the three maps.
+	 */
 	public void leave(int slotNo) {
 		if(slotNo > 0 && slotNo <= this.parkingLot.getSize()) {
 			Vehicle vehicle = slotVehicleMap.remove(slotNo);
@@ -74,6 +109,10 @@ public class ParkingLotOperator {
 		}
 	}
 	
+	/**
+	 * This function prints information about the status of the parking lot.
+	 * It will print all of the vehicles parked at that time in ascending order of their slot number.
+	 */
 	public void getStatus() {
 		Set<Integer> slots = slotVehicleMap.keySet();
 		int currentSize = slots.size();
@@ -92,6 +131,12 @@ public class ParkingLotOperator {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param color: Color of the vehicle
+	 * 
+	 * This function will return color from the registration number of the vehicle.
+	 */
 	public void getRegNosFromColor(String color) {
 		Set<String> regNos = colorRegNoMap.get(color);
 		if(regNos == null || regNos.size() == 0) {
@@ -101,6 +146,12 @@ public class ParkingLotOperator {
 		System.out.println(String.join(", ", regNos));
 	}
 	
+	/**
+	 * 
+	 * @param color: Color of the vehicle
+	 * 
+	 * This function will return slot numbers of all the vehicles of that particular color.
+	 */
 	public void getSlotNosFromColor(String color) {
 		Set<String> regNos = colorRegNoMap.get(color);
 		if(regNos == null || regNos.size() == 0) {
@@ -108,7 +159,6 @@ public class ParkingLotOperator {
 			return;
 		}
 		
-		System.out.println(String.join(", ", regNos));
 		List<Integer> list = new ArrayList<Integer>();
 		for(String regNo : regNos) {
 			int slot = regNoSlotMap.get(regNo);
@@ -126,6 +176,12 @@ public class ParkingLotOperator {
 	    System.out.println(strbul.toString());
 	}
 	
+	/**
+	 * 
+	 * @param number: Registration number of vehicle
+	 * 
+	 * This function will return the slot number of the vehicle if it has been parked into the parking lot.
+	 */
 	public void getSlotNoFromRegNo(String number) {
 		Integer slot = regNoSlotMap.get(number);
 		if(slot == null) {

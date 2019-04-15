@@ -1,5 +1,8 @@
 package com.gojek.parkingSolution;
 
+/*
+ * Vehicle object with its properties color and registration number.
+ */
 public class Vehicle {
 
 	private String number;

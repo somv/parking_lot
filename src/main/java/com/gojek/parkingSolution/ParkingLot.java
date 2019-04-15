@@ -2,9 +2,23 @@ package com.gojek.parkingSolution;
 
 import java.util.PriorityQueue;
 
+/**
+ * 
+ * @author Somveer
+ * A PriorityQueue based implementation of parking lot class.
+ */
 public class ParkingLot {
 
+	/*
+	 * priority queue will be used to get the nearest slot, slots will be numbered from 1 to the size of 
+	 * parking lot and we can get the minimum number in O(1) time. 
+	 * So this is a good choice for these kind of operations.
+	 */
 	private PriorityQueue<Integer> slots = new PriorityQueue<Integer>();
+	
+	/*
+	 * This is the total size of parking lot.
+	 */
     private int size; 
   
     public ParkingLot(int size) {
@@ -17,7 +31,7 @@ public class ParkingLot {
     }
     
     public boolean leaveSlot(int slot) {
-    	return this.slots.add(slot);
+    	return (slot > 0 && slot <= this.size) ? this.slots.add(slot) : false;
     }
     
 	public int getSize() {
