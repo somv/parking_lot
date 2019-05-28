@@ -1,4 +1,6 @@
-package com.gojek.parkingSolution;
+package com.humblefreak.parkingSolution;
+
+import com.humblefreak.parkingSolution.ParkingLot;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

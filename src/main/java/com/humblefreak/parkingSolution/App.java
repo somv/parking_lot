@@ -1,4 +1,4 @@
-package com.gojek.parkingSolution;
+package com.humblefreak.parkingSolution;
 
 import java.io.BufferedReader;
 import java.io.File;

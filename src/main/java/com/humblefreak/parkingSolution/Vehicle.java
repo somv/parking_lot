@@ -1,4 +1,4 @@
-package com.gojek.parkingSolution;
+package com.humblefreak.parkingSolution;
 
 /*
  * Vehicle object with its properties color and registration number.

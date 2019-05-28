@@ -1,4 +1,4 @@
-package com.gojek.parkingSolution;
+package com.humblefreak.parkingSolution;
 
 import java.util.ArrayList;
 import java.util.Collections;
